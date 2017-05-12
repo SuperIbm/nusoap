@@ -19,7 +19,9 @@
         "illuminate/support": "~5.3"
     },
     "autoload": {
-        "classmap": ["lib/nusoap.php"]
+        "psr-4": {
+            "SuperIbm\\Nusoap\\": "./lib"
+        }
     },
     "minimum-stability": "dev"
 }
