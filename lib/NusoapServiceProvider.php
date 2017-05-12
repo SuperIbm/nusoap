@@ -5,7 +5,7 @@ namespace SuperIbm\Nusoap;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
 
-class SuperIbmServiceProvider extends ServiceProvider
+class NusoapServiceProvider extends ServiceProvider
 {
 
     public function boot()
