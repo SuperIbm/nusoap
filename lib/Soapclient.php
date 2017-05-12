@@ -7259,39 +7259,59 @@ class nusoap_client extends nusoap_base  {
 	* @param	string $portName optional portName in WSDL document
 	* @access   public
 	*/
-	function nusoap_client($endpoint,$wsdl = false,$proxyhost = false,$proxyport = false,$proxyusername = false, $proxypassword = false, $timeout = 0, $response_timeout = 30, $portName = ''){
+	function nusoap_client($endpoint = null,$wsdl = false,$proxyhost = false,$proxyport = false,$proxyusername = false, $proxypassword = false, $timeout = 0, $response_timeout = 30, $portName = ''){
 		parent::nusoap_base();
-		$this->endpoint = $endpoint;
-		$this->proxyhost = $proxyhost;
-		$this->proxyport = $proxyport;
-		$this->proxyusername = $proxyusername;
-		$this->proxypassword = $proxypassword;
-		$this->timeout = $timeout;
-		$this->response_timeout = $response_timeout;
-		$this->portName = $portName;
+		$this->connect($endpoint, $wsdl, $proxyhost, $proxyport, $proxyusername, $proxypassword, $timeout, $response_timeout, $portName);
 
-		$this->debug("ctor wsdl=$wsdl timeout=$timeout response_timeout=$response_timeout");
-		$this->appendDebug('endpoint=' . $this->varDump($endpoint));
-
-		// make values
-		if($wsdl){
-			if (is_object($endpoint) && (get_class($endpoint) == 'wsdl')) {
-				$this->wsdl = $endpoint;
-				$this->endpoint = $this->wsdl->wsdl;
-				$this->wsdlFile = $this->endpoint;
-				$this->debug('existing wsdl instance created from ' . $this->endpoint);
-				$this->checkWSDL();
-			} else {
-				$this->wsdlFile = $this->endpoint;
-				$this->wsdl = null;
-				$this->debug('will use lazy evaluation of wsdl from ' . $this->endpoint);
-			}
-			$this->endpointType = 'wsdl';
-		} else {
-			$this->debug("instantiate SOAP with endpoint at $endpoint");
-			$this->endpointType = 'soap';
-		}
 	}
+
+    /**
+     * connetcion
+     *
+     * @param    mixed $endpoint SOAP server or WSDL URL (string), or wsdl instance (object)
+     * @param    mixed $wsdl optional, set to 'wsdl' or true if using WSDL
+     * @param    string $proxyhost optional
+     * @param    string $proxyport optional
+     * @param	string $proxyusername optional
+     * @param	string $proxypassword optional
+     * @param	integer $timeout set the connection timeout
+     * @param	integer $response_timeout set the response timeout
+     * @param	string $portName optional portName in WSDL document
+     * @access   public
+     */
+	public function connect($endpoint,$wsdl = false,$proxyhost = false,$proxyport = false,$proxyusername = false, $proxypassword = false, $timeout = 0, $response_timeout = 30, $portName = '')
+    {
+        $this->endpoint = $endpoint;
+        $this->proxyhost = $proxyhost;
+        $this->proxyport = $proxyport;
+        $this->proxyusername = $proxyusername;
+        $this->proxypassword = $proxypassword;
+        $this->timeout = $timeout;
+        $this->response_timeout = $response_timeout;
+        $this->portName = $portName;
+
+        $this->debug("ctor wsdl=$wsdl timeout=$timeout response_timeout=$response_timeout");
+        $this->appendDebug('endpoint=' . $this->varDump($endpoint));
+
+        // make values
+        if($wsdl){
+            if (is_object($endpoint) && (get_class($endpoint) == 'wsdl')) {
+                $this->wsdl = $endpoint;
+                $this->endpoint = $this->wsdl->wsdl;
+                $this->wsdlFile = $this->endpoint;
+                $this->debug('existing wsdl instance created from ' . $this->endpoint);
+                $this->checkWSDL();
+            } else {
+                $this->wsdlFile = $this->endpoint;
+                $this->wsdl = null;
+                $this->debug('will use lazy evaluation of wsdl from ' . $this->endpoint);
+            }
+            $this->endpointType = 'wsdl';
+        } else {
+            $this->debug("instantiate SOAP with endpoint at $endpoint");
+            $this->endpointType = 'soap';
+        }
+    }
 
 	/**
 	* calls method, returns PHP native type
@@ -8173,7 +8193,7 @@ if (!extension_loaded('soap')) {
 	/**
 	 *	For backwards compatiblity, define soapclient unless the PHP SOAP extension is loaded.
 	 */
-	class soapclient extends nusoap_client {
+	class Soapclient extends nusoap_client {
 	}
 }
 ?>
