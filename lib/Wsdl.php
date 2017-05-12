@@ -12,7 +12,7 @@ namespace SuperIbm\Nusoap;
 * @version  $Id: class.wsdl.php,v 1.76 2010/04/26 20:15:08 snichol Exp $
 * @access public 
 */
-class Wsdl extends nusoap_base {
+class Wsdl extends NusoapBase {
 	// URL or filename of the root of this WSDL
     var $wsdl; 
     // define internal arrays of bindings, ports, operations, messages, etc.
@@ -70,7 +70,7 @@ class Wsdl extends nusoap_base {
      * @access public 
      */
     function wsdl($wsdl = '',$proxyhost=false,$proxyport=false,$proxyusername=false,$proxypassword=false,$timeout=0,$response_timeout=30,$curl_options=null,$use_curl=false){
-		parent::nusoap_base();
+		parent::NusoapBase();
 		$this->debug("ctor wsdl=$wsdl timeout=$timeout response_timeout=$response_timeout");
         $this->proxyhost = $proxyhost;
         $this->proxyport = $proxyport;
