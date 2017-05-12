@@ -18,7 +18,7 @@ class NusoapServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('Nusoap', function($app) {
+        $this->app->bind('Nusoap', function($app) {
             return new Soapclient();
         });
     }
