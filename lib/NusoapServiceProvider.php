@@ -4,7 +4,7 @@ namespace SuperIbm\Nusoap;
 
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
-use SuperIbm\Nusoap\Soapclient;
+use SuperIbm\Nusoap\Nusoapclient;
 
 class NusoapServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class NusoapServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Nusoap', function($app) {
-            return new Soapclient();
+            return new Nusoapclient();
         });
     }
 

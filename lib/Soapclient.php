@@ -8189,11 +8189,7 @@ class nusoap_client extends nusoap_base  {
 	}
 }
 
-if (!extension_loaded('soap')) {
-	/**
-	 *	For backwards compatiblity, define soapclient unless the PHP SOAP extension is loaded.
-	 */
-	class Soapclient extends nusoap_client {
-	}
+
+class Nusoapclient extends nusoap_client {
 }
 ?>
