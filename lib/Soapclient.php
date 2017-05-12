@@ -7277,6 +7277,7 @@ class nusoap_client extends nusoap_base  {
      * @param	integer $timeout set the connection timeout
      * @param	integer $response_timeout set the response timeout
      * @param	string $portName optional portName in WSDL document
+     * @return $this
      * @access   public
      */
 	public function connect($endpoint,$wsdl = false,$proxyhost = false,$proxyport = false,$proxyusername = false, $proxypassword = false, $timeout = 0, $response_timeout = 30, $portName = '')
@@ -7311,6 +7312,8 @@ class nusoap_client extends nusoap_base  {
             $this->debug("instantiate SOAP with endpoint at $endpoint");
             $this->endpointType = 'soap';
         }
+
+    return $this;
     }
 
 	/**
