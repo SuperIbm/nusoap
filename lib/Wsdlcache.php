@@ -1,4 +1,6 @@
 <?php
+namespace SuperIbm\Nusoap;
+
 /*
 The NuSOAP project home is:
 http://sourceforge.net/projects/nusoap/
@@ -204,6 +206,6 @@ class nusoap_wsdlcache {
 /**
  * For backward compatibility
  */
-class wsdlcache extends nusoap_wsdlcache {
+class Wsdlcache extends nusoap_wsdlcache {
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+namespace SuperIbm\Nusoap;
 
 
 
@@ -12,7 +12,7 @@
 * @version  $Id: class.wsdl.php,v 1.76 2010/04/26 20:15:08 snichol Exp $
 * @access public 
 */
-class wsdl extends nusoap_base {
+class Wsdl extends nusoap_base {
 	// URL or filename of the root of this WSDL
     var $wsdl; 
     // define internal arrays of bindings, ports, operations, messages, etc.
